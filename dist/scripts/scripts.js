@@ -161,6 +161,16 @@ href:"/monitoring",
 prefixes:[ "/browse/events" ]
 } ],
 CATALOG_CATEGORIES:[ {
+id:"featured",
+label:"Featured",
+iconClassDefault:"fa fa-code",
+items:[ {
+id:"microsoft",
+label:"Microsoft",
+iconClass:"font-icon icon-dotnet",
+description:"Microsoft Technologies"
+} ]
+}, {
 id:"languages",
 label:"Languages",
 iconClassDefault:"fa fa-code",
@@ -4046,7 +4056,9 @@ return {
 groupBySelector:function(b, c, d) {
 var e = {}, f = {};
 return d = d || {}, _.each(c, function(a) {
-f[a.metadata.uid] = new LabelSelector(a.spec.selector);
+"annotations" in a.metadata && "openshift.io/alternate-name-selector" in a.metadata.annotations ? f[a.metadata.uid] = new LabelSelector({
+name:a.metadata.annotations["openshift.io/alternate-name-selector"]
+}) :f[a.metadata.uid] = new LabelSelector(a.spec.selector);
 }), _.each(b, function(b) {
 if (!d.include || d.include(b)) {
 var g = _.filter(c, function(c) {

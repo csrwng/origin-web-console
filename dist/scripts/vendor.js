@@ -53,10 +53,6 @@ return a.sentinel2 = 0, 0 === Object.getOwnPropertyDescriptor(a, "sentinel2").va
 } catch (b) {}
 }
 
-function _classCallCheck(a, b) {
-if (!(a instanceof b)) throw new TypeError("Cannot call a class as a function");
-}
-
 function mergeDeep(a) {
 "use strict";
 return angular.forEach(arguments, function(b) {
@@ -16428,7 +16424,7 @@ return ab;
 })) :Va && Wa ? $a ? (Wa.exports = ab)._ = ab :Va._ = ab :_a._ = ab;
 }.call(this), "undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requires jQuery");
 
-+function(a) {
+if (+function(a) {
 "use strict";
 var b = a.fn.jquery.split(" ")[0].split(".");
 if (b[0] < 2 && b[1] < 9 || 1 == b[0] && 9 == b[1] && b[2] < 1 || b[0] > 3) throw new Error("Bootstrap's JavaScript requires jQuery version 1.9.1 or higher, but lower than version 4");
@@ -17240,7 +17236,7 @@ var c = a(this), d = c.data();
 d.offset = d.offset || {}, null != d.offsetBottom && (d.offset.bottom = d.offsetBottom), null != d.offsetTop && (d.offset.top = d.offsetTop), b.call(c, d);
 });
 });
-}(jQuery), !function(a) {
+}(jQuery), function(a) {
 "use strict";
 var b = function(b, c) {
 this.options = a.extend({}, a.fn.combobox.defaults, c), this.template = this.options.template || this.template, this.$source = a(b), this.$container = this.setup(), this.$element = this.$container.find("input[type=text]"), this.$target = this.$container.find("input[type=hidden]"), this.$button = this.$container.find(".dropdown-toggle"), this.$menu = a(this.options.menu).appendTo("body"), this.matcher = this.options.matcher || this.matcher, this.sorter = this.options.sorter || this.sorter, this.highlighter = this.options.highlighter || this.highlighter, this.shown = !1, this.selected = !1, this.refresh(), this.transferAttributes(), this.listen();
@@ -17296,7 +17292,7 @@ return c.matcher(a);
 }), b = this.sorter(b), b.length ? this.render(b.slice(0, this.options.items)).show() :this.shown ? this.hide() :this;
 },
 template:function() {
-return "2" == this.options.bsVersion ? '<div class="combobox-container"><input type="hidden" /> <div class="input-append"> <input type="text" autocomplete="false" /> <span class="add-on dropdown-toggle" data-dropdown="dropdown"> <span class="caret"/> <i class="icon-remove"/> </span> </div> </div>' :'<div class="combobox-container"> <input type="hidden" /> <div class="input-group"> <input type="text" autocomplete="false" /> <span class="input-group-addon dropdown-toggle" data-dropdown="dropdown"> <span class="caret" /> <span class="glyphicon glyphicon-remove" /> </span> </div> </div>';
+return "2" == this.options.bsVersion ? '<div class="combobox-container"><input type="hidden" /> <div class="input-append"> <input type="text" autocomplete="off" /> <span class="add-on dropdown-toggle" data-dropdown="dropdown"> <span class="caret"/> <i class="icon-remove"/> </span> </div> </div>' :'<div class="combobox-container"> <input type="hidden" /> <div class="input-group"> <input type="text" autocomplete="off" /> <span class="input-group-addon dropdown-toggle" data-dropdown="dropdown"> <span class="caret" /> <span class="glyphicon glyphicon-remove" /> </span> </div> </div>';
 },
 matcher:function(a) {
 return ~a.toLowerCase().indexOf(this.query.toLowerCase());
@@ -17440,9 +17436,9 @@ var d = a(this), e = d.data("combobox"), f = "object" == typeof c && c;
 e || d.data("combobox", e = new b(this, f)), "string" == typeof c && e[c]();
 });
 }, a.fn.combobox.defaults = {
-bsVersion:"3",
+bsVersion:"4",
 menu:'<ul class="typeahead typeahead-long dropdown-menu"></ul>',
-item:'<li><a href="#"></a></li>'
+item:'<li><a href="#" class="dropdown-item"></a></li>'
 }, a.fn.combobox.Constructor = b;
 }(window.jQuery), !function(a) {
 "function" == typeof define && define.amd ? define([ "jquery" ], a) :a("object" == typeof exports ? require("jquery") :jQuery);
@@ -18827,9 +18823,30 @@ d.call(b, b.data());
 });
 });
 }(a);
-});
-
-var _createClass = function() {
+}), function(a, b) {
+if ("function" == typeof define && define.amd) define([ "jquery" ], b); else if ("undefined" != typeof exports) b(require("jquery")); else {
+var c = {
+exports:{}
+};
+b(a.jquery), a.bootstrapSwitch = c.exports;
+}
+}(this, function(a) {
+"use strict";
+function b(a) {
+return a && a.__esModule ? a :{
+"default":a
+};
+}
+function c(a, b) {
+if (!(a instanceof b)) throw new TypeError("Cannot call a class as a function");
+}
+var d = b(a), e = Object.assign || function(a) {
+for (var b = 1; b < arguments.length; b++) {
+var c = arguments[b];
+for (var d in c) Object.prototype.hasOwnProperty.call(c, d) && (a[d] = c[d]);
+}
+return a;
+}, f = function() {
 function a(a, b) {
 for (var c = 0; c < b.length; c++) {
 var d = b[c];
@@ -18839,42 +18856,39 @@ d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writa
 return function(b, c, d) {
 return c && a(b.prototype, c), d && a(b, d), b;
 };
-}();
-
-if (function(a, b) {
-var c = function() {
-function c(b) {
+}(), g = d["default"] || window.jQuery || window.$, h = function() {
+function a(b) {
 var d = this, e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] :{};
-_classCallCheck(this, c), this.$element = a(b), this.options = a.extend({}, a.fn.bootstrapSwitch.defaults, this._getElementOptions(), e), this.prevOptions = {}, this.$wrapper = a("<div>", {
+c(this, a), this.$element = g(b), this.options = g.extend({}, g.fn.bootstrapSwitch.defaults, this._getElementOptions(), e), this.prevOptions = {}, this.$wrapper = g("<div>", {
 "class":function() {
 var a = [];
 return a.push(d.options.state ? "on" :"off"), d.options.size && a.push(d.options.size), d.options.disabled && a.push("disabled"), d.options.readonly && a.push("readonly"), d.options.indeterminate && a.push("indeterminate"), d.options.inverse && a.push("inverse"), d.$element.attr("id") && a.push("id-" + d.$element.attr("id")), a.map(d._getClass.bind(d)).concat([ d.options.baseClass ], d._getClasses(d.options.wrapperClass)).join(" ");
 }
-}), this.$container = a("<div>", {
+}), this.$container = g("<div>", {
 "class":this._getClass("container")
-}), this.$on = a("<span>", {
+}), this.$on = g("<span>", {
 html:this.options.onText,
 "class":this._getClass("handle-on") + " " + this._getClass(this.options.onColor)
-}), this.$off = a("<span>", {
+}), this.$off = g("<span>", {
 html:this.options.offText,
 "class":this._getClass("handle-off") + " " + this._getClass(this.options.offColor)
-}), this.$label = a("<span>", {
+}), this.$label = g("<span>", {
 html:this.options.labelText,
 "class":this._getClass("label")
 }), this.$element.on("init.bootstrapSwitch", this.options.onInit.bind(this, b)), this.$element.on("switchChange.bootstrapSwitch", function() {
-for (var c = arguments.length, e = Array(c), f = 0; f < c; f++) e[f] = arguments[f];
-d.options.onSwitchChange.apply(b, e) === !1 && (d.$element.is(":radio") ? a('[name="' + d.$element.attr("name") + '"]').trigger("previousState.bootstrapSwitch", !0) :d.$element.trigger("previousState.bootstrapSwitch", !0));
+for (var a = arguments.length, c = Array(a), e = 0; e < a; e++) c[e] = arguments[e];
+d.options.onSwitchChange.apply(b, c) === !1 && (d.$element.is(":radio") ? g('[name="' + d.$element.attr("name") + '"]').trigger("previousState.bootstrapSwitch", !0) :d.$element.trigger("previousState.bootstrapSwitch", !0));
 }), this.$container = this.$element.wrap(this.$container).parent(), this.$wrapper = this.$container.wrap(this.$wrapper).parent(), this.$element.before(this.options.inverse ? this.$off :this.$on).before(this.$label).before(this.options.inverse ? this.$on :this.$off), this.options.indeterminate && this.$element.prop("indeterminate", !0), this._init(), this._elementHandlers(), this._handleHandlers(), this._labelHandlers(), this._formHandler(), this._externalLabelHandler(), this.$element.trigger("init.bootstrapSwitch", this.options.state);
 }
-return _createClass(c, [ {
+return f(a, [ {
 key:"setPrevOptions",
 value:function() {
-this.prevOptions = Object.assign({}, this.options);
+this.prevOptions = e({}, this.options);
 }
 }, {
 key:"state",
-value:function(b, c) {
-return "undefined" == typeof b ? this.options.state :this.options.disabled || this.options.readonly || this.options.state && !this.options.radioAllOff && this.$element.is(":radio") ? this.$element :(this.$element.is(":radio") ? a('[name="' + this.$element.attr("name") + '"]').trigger("setPreviousOptions.bootstrapSwitch") :this.$element.trigger("setPreviousOptions.bootstrapSwitch"), this.options.indeterminate && this.indeterminate(!1), this.$element.prop("checked", Boolean(b)).trigger("change.bootstrapSwitch", c), this.$element);
+value:function(a, b) {
+return "undefined" == typeof a ? this.options.state :this.options.disabled || this.options.readonly || this.options.state && !this.options.radioAllOff && this.$element.is(":radio") ? this.$element :(this.$element.is(":radio") ? g('[name="' + this.$element.attr("name") + '"]').trigger("setPreviousOptions.bootstrapSwitch") :this.$element.trigger("setPreviousOptions.bootstrapSwitch"), this.options.indeterminate && this.indeterminate(!1), this.$element.prop("checked", Boolean(a)).trigger("change.bootstrapSwitch", b), this.$element);
 }
 }, {
 key:"toggleState",
@@ -18980,8 +18994,8 @@ return this.options.baseClass;
 }
 }, {
 key:"wrapperClass",
-value:function(b) {
-return "undefined" == typeof b ? this.options.wrapperClass :(b || (b = a.fn.bootstrapSwitch.defaults.wrapperClass), this.$wrapper.removeClass(this._getClasses(this.options.wrapperClass).join(" ")), this.$wrapper.addClass(this._getClasses(b).join(" ")), this.options.wrapperClass = b, this.$element);
+value:function(a) {
+return "undefined" == typeof a ? this.options.wrapperClass :(a || (a = g.fn.bootstrapSwitch.defaults.wrapperClass), this.$wrapper.removeClass(this._getClasses(this.options.wrapperClass).join(" ")), this.$wrapper.addClass(this._getClasses(a).join(" ")), this.options.wrapperClass = a, this.$element);
 }
 }, {
 key:"radioAllOff",
@@ -18992,13 +19006,13 @@ return this.options.radioAllOff === b ? this.$element :(this.options.radioAllOff
 }
 }, {
 key:"onInit",
-value:function(b) {
-return "undefined" == typeof b ? this.options.onInit :(b || (b = a.fn.bootstrapSwitch.defaults.onInit), this.options.onInit = b, this.$element);
+value:function(a) {
+return "undefined" == typeof a ? this.options.onInit :(a || (a = g.fn.bootstrapSwitch.defaults.onInit), this.options.onInit = a, this.$element);
 }
 }, {
 key:"onSwitchChange",
-value:function(b) {
-return "undefined" == typeof b ? this.options.onSwitchChange :(b || (b = a.fn.bootstrapSwitch.defaults.onSwitchChange), this.options.onSwitchChange = b, this.$element);
+value:function(a) {
+return "undefined" == typeof a ? this.options.onSwitchChange :(a || (a = g.fn.bootstrapSwitch.defaults.onSwitchChange), this.options.onSwitchChange = a, this.$element);
 }
 }, {
 key:"destroy",
@@ -19032,8 +19046,8 @@ wrapperClass:this.$element.data("wrapper-class")
 }, {
 key:"_width",
 value:function() {
-var a = this, b = this.$on.add(this.$off).add(this.$label).css("width", ""), c = void 0;
-return c = "auto" === this.options.handleWidth ? Math.round(Math.max(this.$on.width(), this.$off.width())) :this.options.handleWidth, b.width(c), this.$label.width(function(b, d) {
+var a = this, b = this.$on.add(this.$off).add(this.$label).css("width", ""), c = "auto" === this.options.handleWidth ? Math.round(Math.max(this.$on.width(), this.$off.width())) :this.options.handleWidth;
+return b.width(c), this.$label.width(function(b, d) {
 return "auto" !== a.options.labelWidth ? a.options.labelWidth :d < c ? c :d;
 }), this._handleWidth = this.$on.outerWidth(), this._labelWidth = this.$label.outerWidth(), this.$container.width(2 * this._handleWidth + this._labelWidth), this.$wrapper.width(this._handleWidth + this._labelWidth);
 }
@@ -19050,38 +19064,38 @@ return a.options.indeterminate ? "-" + a._handleWidth / 2 + "px" :b ? a.options.
 }, {
 key:"_init",
 value:function() {
-var a = this, c = function() {
+var a = this, b = function() {
 a.setPrevOptions(), a._width(), a._containerPosition(), setTimeout(function() {
 if (a.options.animate) return a.$wrapper.addClass(a._getClass("animate"));
 }, 50);
 };
-if (this.$wrapper.is(":visible")) return void c();
-var d = b.setInterval(function() {
-if (a.$wrapper.is(":visible")) return c(), b.clearInterval(d);
+if (this.$wrapper.is(":visible")) return void b();
+var c = window.setInterval(function() {
+if (a.$wrapper.is(":visible")) return b(), window.clearInterval(c);
 }, 50);
 }
 }, {
 key:"_elementHandlers",
 value:function() {
-var b = this;
+var a = this;
 return this.$element.on({
 "setPreviousOptions.bootstrapSwitch":this.setPrevOptions.bind(this),
 "previousState.bootstrapSwitch":function() {
-b.options = b.prevOptions, b.options.indeterminate && b.$wrapper.addClass(b._getClass("indeterminate")), b.$element.prop("checked", b.options.state).trigger("change.bootstrapSwitch", !0);
+a.options = a.prevOptions, a.options.indeterminate && a.$wrapper.addClass(a._getClass("indeterminate")), a.$element.prop("checked", a.options.state).trigger("change.bootstrapSwitch", !0);
 },
-"change.bootstrapSwitch":function(c, d) {
-c.preventDefault(), c.stopImmediatePropagation();
-var e = b.$element.is(":checked");
-b._containerPosition(e), e !== b.options.state && (b.options.state = e, b.$wrapper.toggleClass(b._getClass("off")).toggleClass(b._getClass("on")), d || (b.$element.is(":radio") && a('[name="' + b.$element.attr("name") + '"]').not(b.$element).prop("checked", !1).trigger("change.bootstrapSwitch", !0), b.$element.trigger("switchChange.bootstrapSwitch", [ e ])));
+"change.bootstrapSwitch":function(b, c) {
+b.preventDefault(), b.stopImmediatePropagation();
+var d = a.$element.is(":checked");
+a._containerPosition(d), d !== a.options.state && (a.options.state = d, a.$wrapper.toggleClass(a._getClass("off")).toggleClass(a._getClass("on")), c || (a.$element.is(":radio") && g('[name="' + a.$element.attr("name") + '"]').not(a.$element).prop("checked", !1).trigger("change.bootstrapSwitch", !0), a.$element.trigger("switchChange.bootstrapSwitch", [ d ])));
 },
-"focus.bootstrapSwitch":function(a) {
-a.preventDefault(), b.$wrapper.addClass(b._getClass("focused"));
+"focus.bootstrapSwitch":function(b) {
+b.preventDefault(), a.$wrapper.addClass(a._getClass("focused"));
 },
-"blur.bootstrapSwitch":function(a) {
-a.preventDefault(), b.$wrapper.removeClass(b._getClass("focused"));
+"blur.bootstrapSwitch":function(b) {
+b.preventDefault(), a.$wrapper.removeClass(a._getClass("focused"));
 },
-"keydown.bootstrapSwitch":function(a) {
-!a.which || b.options.disabled || b.options.readonly || 37 !== a.which && 39 !== a.which || (a.preventDefault(), a.stopImmediatePropagation(), b.state(39 === a.which));
+"keydown.bootstrapSwitch":function(b) {
+!b.which || a.options.disabled || a.options.readonly || 37 !== b.which && 39 !== b.which || (b.preventDefault(), b.stopImmediatePropagation(), a.state(39 === b.which));
 }
 });
 }
@@ -19137,13 +19151,13 @@ c.preventDefault(), c.stopImmediatePropagation(), c.target === b[0] && a.toggleS
 }, {
 key:"_formHandler",
 value:function() {
-var c = this.$element.closest("form");
-c.data("bootstrap-switch") || c.on("reset.bootstrapSwitch", function() {
-b.setTimeout(function() {
-c.find("input").filter(function() {
-return a(this).data("bootstrap-switch");
+var a = this.$element.closest("form");
+a.data("bootstrap-switch") || a.on("reset.bootstrapSwitch", function() {
+window.setTimeout(function() {
+a.find("input").filter(function() {
+return g(this).data("bootstrap-switch");
 }).each(function() {
-return a(this).bootstrapSwitch("state", this.checked);
+return g(this).bootstrapSwitch("state", this.checked);
 });
 }, 1);
 }).data("bootstrap-switch", !0);
@@ -19155,19 +19169,19 @@ return this.options.baseClass + "-" + a;
 }
 }, {
 key:"_getClasses",
-value:function(b) {
-return a.isArray(b) ? b.map(this._getClass.bind(this)) :[ this._getClass(b) ];
+value:function(a) {
+return g.isArray(a) ? a.map(this._getClass.bind(this)) :[ this._getClass(a) ];
 }
-} ]), c;
+} ]), a;
 }();
-a.fn.bootstrapSwitch = function(b) {
-for (var d = arguments.length, e = Array(d > 1 ? d - 1 :0), f = 1; f < d; f++) e[f - 1] = arguments[f];
-var g = this;
-return this.each(function() {
-var d = a(this), f = d.data("bootstrap-switch");
-f || (f = new c(this, b), d.data("bootstrap-switch", f)), "string" == typeof b && (g = f[b].apply(f, e));
-}), g;
-}, a.fn.bootstrapSwitch.Constructor = c, a.fn.bootstrapSwitch.defaults = {
+g.fn.bootstrapSwitch = function(a) {
+function b(b, c) {
+var e = g(c), f = e.data("bootstrap-switch"), i = f || new h(c, a);
+return f || e.data("bootstrap-switch", i), "string" == typeof a ? i[a].apply(i, d) :b;
+}
+for (var c = arguments.length, d = Array(c > 1 ? c - 1 :0), e = 1; e < c; e++) d[e - 1] = arguments[e];
+return Array.prototype.reduce.call(this, b, this);
+}, g.fn.bootstrapSwitch.Constructor = h, g.fn.bootstrapSwitch.defaults = {
 state:!0,
 size:null,
 animate:!0,
@@ -19188,7 +19202,7 @@ wrapperClass:"wrapper",
 onInit:function() {},
 onSwitchChange:function() {}
 };
-}(window.jQuery, window), function(a) {
+}), function(a) {
 "use strict";
 function b(a, b) {
 return a + ".touchspin_" + b;
@@ -29609,14 +29623,14 @@ var d = a.sDecimal;
 d && Qa(d);
 }
 function h(a) {
-nb(a, "ordering", "bSort"), nb(a, "orderMulti", "bSortMulti"), nb(a, "orderClasses", "bSortClasses"), nb(a, "orderCellsTop", "bSortCellsTop"), nb(a, "order", "aaSorting"), nb(a, "orderFixed", "aaSortingFixed"), nb(a, "paging", "bPaginate"), nb(a, "pagingType", "sPaginationType"), nb(a, "pageLength", "iDisplayLength"), nb(a, "searching", "bFilter"), "boolean" == typeof a.sScrollX && (a.sScrollX = a.sScrollX ? "100%" :""), "boolean" == typeof a.scrollX && (a.scrollX = a.scrollX ? "100%" :"");
+ob(a, "ordering", "bSort"), ob(a, "orderMulti", "bSortMulti"), ob(a, "orderClasses", "bSortClasses"), ob(a, "orderCellsTop", "bSortCellsTop"), ob(a, "order", "aaSorting"), ob(a, "orderFixed", "aaSortingFixed"), ob(a, "paging", "bPaginate"), ob(a, "pagingType", "sPaginationType"), ob(a, "pageLength", "iDisplayLength"), ob(a, "searching", "bFilter"), "boolean" == typeof a.sScrollX && (a.sScrollX = a.sScrollX ? "100%" :""), "boolean" == typeof a.scrollX && (a.scrollX = a.scrollX ? "100%" :"");
 var b = a.aoSearchCols;
 if (b) for (var c = 0, d = b.length; c < d; c++) b[c] && f(Wa.models.oSearch, b[c]);
 }
 function i(b) {
-nb(b, "orderable", "bSortable"), nb(b, "orderData", "aDataSort"), nb(b, "orderSequence", "asSorting"), nb(b, "orderDataType", "sortDataType");
+ob(b, "orderable", "bSortable"), ob(b, "orderData", "aDataSort"), ob(b, "orderSequence", "asSorting"), ob(b, "orderDataType", "sortDataType");
 var c = b.aDataSort;
-c && !a.isArray(c) && (b.aDataSort = [ c ]);
+"number" != typeof c || a.isArray(c) || (b.aDataSort = [ c ]);
 }
 function j(c) {
 if (!Wa.__browser) {
@@ -29804,13 +29818,13 @@ return a[b];
 var e = function(b, c, f) {
 var g, h, i, j;
 if ("" !== f) for (var k = A(f), l = 0, m = k.length; l < m; l++) {
-if (g = k[l].match(ob), h = k[l].match(pb), g) {
-if (k[l] = k[l].replace(ob, ""), "" !== k[l] && (b = b[k[l]]), i = [], k.splice(0, l + 1), j = k.join("."), a.isArray(b)) for (var n = 0, o = b.length; n < o; n++) i.push(e(b[n], c, j));
+if (g = k[l].match(pb), h = k[l].match(qb), g) {
+if (k[l] = k[l].replace(pb, ""), "" !== k[l] && (b = b[k[l]]), i = [], k.splice(0, l + 1), j = k.join("."), a.isArray(b)) for (var n = 0, o = b.length; n < o; n++) i.push(e(b[n], c, j));
 var p = g[0].substring(1, g[0].length - 1);
 b = "" === p ? i :i.join(p);
 break;
 }
-if (h) k[l] = k[l].replace(pb, ""), b = b[k[l]](); else {
+if (h) k[l] = k[l].replace(qb, ""), b = b[k[l]](); else {
 if (null === b || b[k[l]] === d) return d;
 b = b[k[l]];
 }
@@ -29832,13 +29846,13 @@ a[b] = c;
 };
 var c = function(b, e, f) {
 for (var g, h, i, j, k, l = A(f), m = l[l.length - 1], n = 0, o = l.length - 1; n < o; n++) {
-if (h = l[n].match(ob), i = l[n].match(pb), h) {
-if (l[n] = l[n].replace(ob, ""), b[l[n]] = [], g = l.slice(), g.splice(0, n + 1), k = g.join("."), a.isArray(e)) for (var p = 0, q = e.length; p < q; p++) j = {}, c(j, e[p], k), b[l[n]].push(j); else b[l[n]] = e;
+if (h = l[n].match(pb), i = l[n].match(qb), h) {
+if (l[n] = l[n].replace(pb, ""), b[l[n]] = [], g = l.slice(), g.splice(0, n + 1), k = g.join("."), a.isArray(e)) for (var p = 0, q = e.length; p < q; p++) j = {}, c(j, e[p], k), b[l[n]].push(j); else b[l[n]] = e;
 return;
 }
-i && (l[n] = l[n].replace(pb, ""), b = b[l[n]](e)), null !== b[l[n]] && b[l[n]] !== d || (b[l[n]] = {}), b = b[l[n]];
+i && (l[n] = l[n].replace(qb, ""), b = b[l[n]](e)), null !== b[l[n]] && b[l[n]] !== d || (b[l[n]] = {}), b = b[l[n]];
 }
-m.match(pb) ? b = b[m.replace(pb, "")](e) :b[m.replace(ob, "")] = e;
+m.match(qb) ? b = b[m.replace(qb, "")](e) :b[m.replace(pb, "")] = e;
 };
 return function(a, d) {
 return c(a, d, b);
@@ -29919,7 +29933,7 @@ if (d) {
 var f = b.rowIdFn(e);
 if (f && (d.id = f), e.DT_RowClass) {
 var g = e.DT_RowClass.split(" ");
-c.__rowc = c.__rowc ? mb(c.__rowc.concat(g)) :g, a(d).removeClass(c.__rowc.join(" ")).addClass(e.DT_RowClass);
+c.__rowc = c.__rowc ? nb(c.__rowc.concat(g)) :g, a(d).removeClass(c.__rowc.join(" ")).addClass(e.DT_RowClass);
 }
 e.DT_RowAttr && a(d).attr(e.DT_RowAttr), e.DT_RowData && a(d).data(e.DT_RowData);
 }
@@ -30151,7 +30165,7 @@ bRegex:g.bRegex,
 bSmart:g.bSmart,
 bCaseInsensitive:g.bCaseInsensitive
 }), b._iDisplayStart = 0, M(b));
-}, m = null !== b.searchDelay ? b.searchDelay :"ssp" === Oa(b) ? 400 :0, n = a("input", k).val(g.sSearch).attr("placeholder", f.sSearchPlaceholder).on("keyup.DT search.DT input.DT paste.DT cut.DT", m ? ub(l, m) :l).on("keypress.DT", function(a) {
+}, m = null !== b.searchDelay ? b.searchDelay :"ssp" === Oa(b) ? 400 :0, n = a("input", k).val(g.sSearch).attr("placeholder", f.sSearchPlaceholder).on("keyup.DT search.DT input.DT paste.DT cut.DT", m ? vb(l, m) :l).on("keypress.DT", function(a) {
 if (13 == a.keyCode) return !1;
 }).attr("aria-controls", e);
 return a(b.nTable).on("search.dt.DT", function(a, d) {
@@ -30193,7 +30207,7 @@ a.aiDisplay = m;
 }
 }
 function _(b, c, d, e) {
-if (b = c ? b :qb(b), d) {
+if (b = c ? b :rb(b), d) {
 var f = a.map(b.match(/"[^"]+"|[^ ]+/g) || [ "" ], function(a) {
 if ('"' === a.charAt(0)) {
 var b = a.match(/^"(.*)"$/);
@@ -30208,7 +30222,7 @@ return new RegExp(b, e ? "i" :"");
 function aa(a) {
 var b, c, d, e, f, g, h, i, j = a.aoColumns, k = Wa.ext.type.search, l = !1;
 for (c = 0, e = a.aoData.length; c < e; c++) if (i = a.aoData[c], !i._aFilterData) {
-for (g = [], d = 0, f = j.length; d < f; d++) b = j[d], b.bSearchable ? (h = y(a, c, d, "filter"), k[b.sType] && (h = k[b.sType](h)), null === h && (h = ""), "string" != typeof h && h.toString && (h = h.toString())) :h = "", h.indexOf && h.indexOf("&") !== -1 && (rb.innerHTML = h, h = sb ? rb.textContent :rb.innerText), h.replace && (h = h.replace(/[\r\n]/g, "")), g.push(h);
+for (g = [], d = 0, f = j.length; d < f; d++) b = j[d], b.bSearchable ? (h = y(a, c, d, "filter"), k[b.sType] && (h = k[b.sType](h)), null === h && (h = ""), "string" != typeof h && h.toString && (h = h.toString())) :h = "", h.indexOf && h.indexOf("&") !== -1 && (sb.innerHTML = h, h = tb ? sb.textContent :sb.innerText), h.replace && (h = h.replace(/[\r\n]/g, "")), g.push(h);
 i._aFilterData = g, i._sFilterRow = g.join("  "), l = !0;
 }
 return l;
@@ -30434,7 +30448,7 @@ g.style.width = va(D), C.remove();
 }
 if (t && (g.style.width = va(t)), (t || k) && !c._reszEvt) {
 var H = function() {
-a(b).on("resize.DT-" + c.sInstance, ub(function() {
+a(b).on("resize.DT-" + c.sInstance, vb(function() {
 n(c);
 }));
 };
@@ -30453,7 +30467,7 @@ var e = b.aoData[d];
 return e.nTr ? e.anCells[c] :a("<td/>").html(y(b, d, c, "display"))[0];
 }
 function ua(a, b) {
-for (var c, d = -1, e = -1, f = 0, g = a.aoData.length; f < g; f++) c = y(a, f, b, "display") + "", c = c.replace(tb, ""), c = c.replace(/&nbsp;/g, " "), c.length > d && (d = c.length, e = f);
+for (var c, d = -1, e = -1, f = 0, g = a.aoData.length; f < g; f++) c = y(a, f, b, "display") + "", c = c.replace(ub, ""), c = c.replace(/&nbsp;/g, " "), c.length > d && (d = c.length, e = f);
 return e;
 }
 function va(a) {
@@ -30549,18 +30563,18 @@ La(b, "aoStateSaveParams", "stateSaveParams", [ b, c ]), b.oSavedState = c, b.fn
 function Ea(b, c, e) {
 var f, g, h = b.aoColumns, i = function(c) {
 if (!c || !c.time) return void e();
-var i = La(b, "aoStateLoadParams", "stateLoadParams", [ b, j ]);
+var i = La(b, "aoStateLoadParams", "stateLoadParams", [ b, c ]);
 if (a.inArray(!1, i) !== -1) return void e();
-var k = b.iStateDuration;
-if (k > 0 && c.time < +new Date() - 1e3 * k) return void e();
+var j = b.iStateDuration;
+if (j > 0 && c.time < +new Date() - 1e3 * j) return void e();
 if (c.columns && h.length !== c.columns.length) return void e();
-if (b.oLoadedState = a.extend(!0, {}, j), c.start !== d && (b._iDisplayStart = c.start, b.iInitDisplayStart = c.start), c.length !== d && (b._iDisplayLength = c.length), c.order !== d && (b.aaSorting = [], a.each(c.order, function(a, c) {
+if (b.oLoadedState = a.extend(!0, {}, c), c.start !== d && (b._iDisplayStart = c.start, b.iInitDisplayStart = c.start), c.length !== d && (b._iDisplayLength = c.length), c.order !== d && (b.aaSorting = [], a.each(c.order, function(a, c) {
 b.aaSorting.push(c[0] >= h.length ? [ 0, c[1] ] :c);
 })), c.search !== d && a.extend(b.oPreviousSearch, ca(c.search)), c.columns) for (f = 0, g = c.columns.length; f < g; f++) {
-var l = c.columns[f];
-l.visible !== d && (h[f].bVisible = l.visible), l.search !== d && a.extend(b.aoPreSearchCols[f], ca(l.search));
+var k = c.columns[f];
+k.visible !== d && (h[f].bVisible = k.visible), k.search !== d && a.extend(b.aoPreSearchCols[f], ca(k.search));
 }
-La(b, "aoStateLoaded", "stateLoaded", [ b, j ]), e();
+La(b, "aoStateLoaded", "stateLoaded", [ b, c ]), e();
 };
 if (!b.oFeatures.bStateSave) return void e();
 var j = b.fnStateLoadCallback.call(b.oInstance, b, i);
@@ -30626,22 +30640,22 @@ function Oa(a) {
 return a.oFeatures.bServerSide ? "ssp" :a.ajax || a.sAjaxSource ? "ajax" :"dom";
 }
 function Pa(a, b) {
-var c = [], d = Rb.numbers_length, e = Math.floor(d / 2);
+var c = [], d = Sb.numbers_length, e = Math.floor(d / 2);
 return b <= d ? c = jb(0, b) :a <= e ? (c = jb(0, d - 2), c.push("ellipsis"), c.push(b - 1)) :a >= b - 1 - e ? (c = jb(b - (d - 2), b), c.splice(0, 0, "ellipsis"), c.splice(0, 0, 0)) :(c = jb(a - e + 2, a + e - 1), c.push("ellipsis"), c.push(b - 1), c.splice(0, 0, "ellipsis"), c.splice(0, 0, 0)), c.DT_el = "span", c;
 }
 function Qa(b) {
 a.each({
 num:function(a) {
-return Sb(a, b);
+return Tb(a, b);
 },
 "num-fmt":function(a) {
-return Sb(a, b, ab);
+return Tb(a, b, ab);
 },
 "html-num":function(a) {
-return Sb(a, b, Za);
+return Tb(a, b, Za);
 },
 "html-num-fmt":function(a) {
-return Sb(a, b, Za, ab);
+return Tb(a, b, Za, ab);
 }
 }, function(a, c) {
 Sa.type.order[a + b + "-pre"] = c, a.match(/^html\-/) && (Sa.type.search[a + b] = Sa.type.search.html);
@@ -30827,7 +30841,7 @@ return !a || a === !0 || "-" === a;
 var b = parseInt(a, 10);
 return !isNaN(b) && isFinite(a) ? b :null;
 }, db = function(a, b) {
-return Xa[b] || (Xa[b] = new RegExp(qb(b), "g")), "string" == typeof a && "." !== b ? a.replace(/\./g, "").replace(Xa[b], ".") :a;
+return Xa[b] || (Xa[b] = new RegExp(rb(b), "g")), "string" == typeof a && "." !== b ? a.replace(/\./g, "").replace(Xa[b], ".") :a;
 }, eb = function(a, b, c) {
 var d = "string" == typeof a;
 return !!bb(a) || (b && d && (a = db(a, b)), c && d && (a = a.replace(ab, "")), !isNaN(parseFloat(a)) && isFinite(a));
@@ -30856,6 +30870,14 @@ return b;
 }, lb = function(a) {
 return a.replace(Za, "");
 }, mb = function(a) {
+if (a.length < 2) return !0;
+for (var b = a.slice().sort(), c = b[0], d = 1, e = b.length; d < e; d++) {
+if (b[d] === c) return !1;
+c = b[d];
+}
+return !0;
+}, nb = function(a) {
+if (mb(a)) return a.slice();
 var b, c, d, e = [], f = a.length, g = 0;
 a:for (c = 0; c < f; c++) {
 for (b = a[c], d = 0; d < g; d++) if (e[d] === b) continue a;
@@ -30877,9 +30899,9 @@ escapeRegex:function(a) {
 return a.replace(_a, "\\$1");
 }
 };
-var nb = function(a, b, c) {
+var ob = function(a, b, c) {
 a[b] !== d && (a[c] = a[b]);
-}, ob = /\[.*?\]$/, pb = /\(\)$/, qb = Wa.util.escapeRegex, rb = a("<div>")[0], sb = rb.textContent !== d, tb = /<.*?>/g, ub = Wa.util.throttle, vb = [], wb = Array.prototype, xb = function(b) {
+}, pb = /\[.*?\]$/, qb = /\(\)$/, rb = Wa.util.escapeRegex, sb = a("<div>")[0], tb = sb.textContent !== d, ub = /<.*?>/g, vb = Wa.util.throttle, wb = [], xb = Array.prototype, yb = function(b) {
 var c, d, e = Wa.settings, f = a.map(e, function(a, b) {
 return a.nTable;
 });
@@ -30890,20 +30912,20 @@ return c = a.inArray(this, f), c !== -1 ? e[c] :null;
 Ta = function(b, c) {
 if (!(this instanceof Ta)) return new Ta(b, c);
 var d = [], e = function(a) {
-var b = xb(a);
+var b = yb(a);
 b && (d = d.concat(b));
 };
 if (a.isArray(b)) for (var f = 0, g = b.length; f < g; f++) e(b[f]); else e(b);
-this.context = mb(d), c && a.merge(this, c), this.selector = {
+this.context = nb(d), c && a.merge(this, c), this.selector = {
 rows:null,
 cols:null,
 opts:null
-}, Ta.extend(this, this, vb);
+}, Ta.extend(this, this, wb);
 }, Wa.Api = Ta, a.extend(Ta.prototype, {
 any:function() {
 return 0 !== this.count();
 },
-concat:wb.concat,
+concat:xb.concat,
 context:[],
 count:function() {
 return this.flatten().length;
@@ -30918,15 +30940,15 @@ return b.length > a ? new Ta(b[a], this[a]) :null;
 },
 filter:function(a) {
 var b = [];
-if (wb.filter) b = wb.filter.call(this, a, this); else for (var c = 0, d = this.length; c < d; c++) a.call(this, this[c], c, this) && b.push(this[c]);
+if (xb.filter) b = xb.filter.call(this, a, this); else for (var c = 0, d = this.length; c < d; c++) a.call(this, this[c], c, this) && b.push(this[c]);
 return new Ta(this.context, b);
 },
 flatten:function() {
 var a = [];
 return new Ta(this.context, a.concat.apply(a, this.toArray()));
 },
-join:wb.join,
-indexOf:wb.indexOf || function(a, b) {
+join:xb.join,
+indexOf:xb.indexOf || function(a, b) {
 for (var c = b || 0, d = this.length; c < d; c++) if (this[c] === a) return c;
 return -1;
 },
@@ -30934,7 +30956,7 @@ iterator:function(a, b, c, e) {
 var f, g, h, i, j, k, l, m, n = [], o = this.context, p = this.selector;
 for ("string" == typeof a && (e = c, c = b, b = a, a = !1), g = 0, h = o.length; g < h; g++) {
 var q = new Ta(o[g]);
-if ("table" === b) f = c.call(q, o[g], g), f !== d && n.push(f); else if ("columns" === b || "rows" === b) f = c.call(q, o[g], this[g], g), f !== d && n.push(f); else if ("column" === b || "column-rows" === b || "row" === b || "cell" === b) for (l = this[g], "column-rows" === b && (k = Db(o[g], p.opts)), i = 0, j = l.length; i < j; i++) m = l[i], f = "cell" === b ? c.call(q, o[g], m.row, m.column, g, i) :c.call(q, o[g], m, g, i, k), f !== d && n.push(f);
+if ("table" === b) f = c.call(q, o[g], g), f !== d && n.push(f); else if ("columns" === b || "rows" === b) f = c.call(q, o[g], this[g], g), f !== d && n.push(f); else if ("column" === b || "column-rows" === b || "row" === b || "cell" === b) for (l = this[g], "column-rows" === b && (k = Eb(o[g], p.opts)), i = 0, j = l.length; i < j; i++) m = l[i], f = "cell" === b ? c.call(q, o[g], m.row, m.column, g, i) :c.call(q, o[g], m, g, i, k), f !== d && n.push(f);
 }
 if (n.length || e) {
 var r = new Ta(o, a ? n.concat.apply([], n) :n), s = r.selector;
@@ -30942,13 +30964,13 @@ return s.rows = p.rows, s.cols = p.cols, s.opts = p.opts, r;
 }
 return this;
 },
-lastIndexOf:wb.lastIndexOf || function(a, b) {
+lastIndexOf:xb.lastIndexOf || function(a, b) {
 return this.indexOf.apply(this.toArray.reverse(), arguments);
 },
 length:0,
 map:function(a) {
 var b = [];
-if (wb.map) b = wb.map.call(this, a, this); else for (var c = 0, d = this.length; c < d; c++) b.push(a.call(this, this[c], c));
+if (xb.map) b = xb.map.call(this, a, this); else for (var c = 0, d = this.length; c < d; c++) b.push(a.call(this, this[c], c));
 return new Ta(this.context, b);
 },
 pluck:function(a) {
@@ -30956,21 +30978,24 @@ return this.map(function(b) {
 return b[a];
 });
 },
-pop:wb.pop,
-push:wb.push,
-reduce:wb.reduce || function(a, b) {
+pop:xb.pop,
+push:xb.push,
+reduce:xb.reduce || function(a, b) {
 return k(this, a, b, 0, this.length, 1);
 },
-reduceRight:wb.reduceRight || function(a, b) {
+reduceRight:xb.reduceRight || function(a, b) {
 return k(this, a, b, this.length - 1, -1, -1);
 },
-reverse:wb.reverse,
+reverse:xb.reverse,
 selector:null,
-shift:wb.shift,
-sort:wb.sort,
-splice:wb.splice,
+shift:xb.shift,
+slice:function() {
+return new Ta(this.context, this);
+},
+sort:xb.sort,
+splice:xb.splice,
 toArray:function() {
-return wb.slice.call(this);
+return xb.slice.call(this);
 },
 to$:function() {
 return a(this);
@@ -30979,9 +31004,9 @@ toJQuery:function() {
 return a(this);
 },
 unique:function() {
-return new Ta(this.context, mb(this));
+return new Ta(this.context, nb(this));
 },
-unshift:wb.unshift
+unshift:xb.unshift
 }), Ta.extend = function(b, c, d) {
 if (d.length && c && (c instanceof Ta || c.__dt_wrapper)) {
 var e, f, g, h = function(a, b, c) {
@@ -30994,7 +31019,7 @@ for (e = 0, f = d.length; e < f; e++) g = d[e], c[g.name] = "function" == typeof
 }
 }, Ta.register = Ua = function(b, c) {
 if (a.isArray(b)) for (var d = 0, e = b.length; d < e; d++) Ta.register(b[d], c); else {
-var f, g, h, i, j = b.split("."), k = vb, l = function(a, b) {
+var f, g, h, i, j = b.split("."), k = wb, l = function(a, b) {
 for (var c = 0, d = a.length; c < d; c++) if (a[c].name === b) return a[c];
 return null;
 };
@@ -31015,7 +31040,7 @@ var b = e.apply(this, arguments);
 return b === this ? this :b instanceof Ta ? b.length ? a.isArray(b[0]) ? new Ta(b.context, b[0]) :b[0] :d :b;
 });
 };
-var yb = function(b, c) {
+var zb = function(b, c) {
 if ("number" == typeof b) return [ c[b] ];
 var d = a.map(c, function(a, b) {
 return a.nTable;
@@ -31026,7 +31051,7 @@ return c[e];
 }).toArray();
 };
 Ua("tables()", function(a) {
-return a ? new Ta(yb(a, this.context)) :this;
+return a ? new Ta(zb(a, this.context)) :this;
 }), Ua("table()", function(a) {
 var b = this.tables(a), c = b.context;
 return c.length ? new Ta(c[0]) :b;
@@ -31076,7 +31101,7 @@ return a === d ? 0 !== this.context.length ? this.context[0]._iDisplayLength :d 
 ia(b, a);
 });
 });
-var zb = function(a, b, c) {
+var Ab = function(a, b, c) {
 if (c) {
 var d = new Ta(a);
 d.one("draw", function() {
@@ -31101,7 +31126,7 @@ var a = this.context;
 if (a.length > 0) return a[0].oAjaxData;
 }), Ua("ajax.reload()", function(a, b) {
 return this.iterator("table", function(c) {
-zb(c, b === !1, a);
+Ab(c, b === !1, a);
 });
 }), Ua("ajax.url()", function(b) {
 var c = this.context;
@@ -31110,36 +31135,36 @@ a.isPlainObject(c.ajax) ? c.ajax.url = b :c.ajax = b;
 });
 }), Ua("ajax.url().load()", function(a, b) {
 return this.iterator("table", function(c) {
-zb(c, b === !1, a);
+Ab(c, b === !1, a);
 });
 });
-var Ab = function(b, c, e, f, g) {
+var Bb = function(b, c, e, f, g) {
 var h, i, j, k, l, m, n = [], o = typeof c;
 for (c && "string" !== o && "function" !== o && c.length !== d || (c = [ c ]), j = 0, k = c.length; j < k; j++) for (i = c[j] && c[j].split && !c[j].match(/[\[\(:]/) ? c[j].split(",") :[ c[j] ], l = 0, m = i.length; l < m; l++) h = e("string" == typeof i[l] ? a.trim(i[l]) :i[l]), h && h.length && (n = n.concat(h));
 var p = Sa.selector[b];
 if (p.length) for (j = 0, k = p.length; j < k; j++) n = p[j](f, g, n);
-return mb(n);
-}, Bb = function(b) {
+return nb(n);
+}, Cb = function(b) {
 return b || (b = {}), b.filter && b.search === d && (b.search = b.filter), a.extend({
 search:"none",
 order:"current",
 page:"all"
 }, b);
-}, Cb = function(a) {
+}, Db = function(a) {
 for (var b = 0, c = a.length; b < c; b++) if (a[b].length > 0) return a[0] = a[b], a[0].length = 1, a.length = 1, a.context = [ a.context[b] ], a;
 return a.length = 0, a;
-}, Db = function(b, c) {
+}, Eb = function(b, c) {
 var d, e, f, g = [], h = b.aiDisplay, i = b.aiDisplayMaster, j = c.search, k = c.order, l = c.page;
 if ("ssp" == Oa(b)) return "removed" === j ? [] :jb(0, i.length);
 if ("current" == l) for (d = b._iDisplayStart, e = b.fnDisplayEnd(); d < e; d++) g.push(h[d]); else if ("current" == k || "applied" == k) g = "none" == j ? i.slice() :"applied" == j ? h.slice() :a.map(i, function(b, c) {
 return a.inArray(b, h) === -1 ? b :null;
 }); else if ("index" == k || "original" == k) for (d = 0, e = b.aoData.length; d < e; d++) "none" == j ? g.push(d) :(f = a.inArray(d, h), (f === -1 && "removed" == j || f >= 0 && "applied" == j) && g.push(d));
 return g;
-}, Eb = function(b, c, e) {
+}, Fb = function(b, c, e) {
 var f, g = function(c) {
 var g = cb(c);
 if (null !== g && !e) return [ g ];
-if (f || (f = Db(b, e)), null !== g && a.inArray(g, f) !== -1) return [ g ];
+if (f || (f = Eb(b, e)), null !== g && a.inArray(g, f) !== -1) return [ g ];
 if (null === c || c === d || "" === c) return f;
 if ("function" == typeof c) return a.map(f, function(a) {
 var d = b.aoData[a];
@@ -31160,12 +31185,12 @@ return a(h).filter(c).map(function() {
 return this._DT_RowIndex;
 }).toArray();
 };
-return Ab("row", c, g, b, e);
+return Bb("row", c, g, b, e);
 };
 Ua("rows()", function(b, c) {
-b === d ? b = "" :a.isPlainObject(b) && (c = b, b = ""), c = Bb(c);
+b === d ? b = "" :a.isPlainObject(b) && (c = b, b = ""), c = Cb(c);
 var e = this.iterator("table", function(a) {
-return Eb(a, b, c);
+return Fb(a, b, c);
 }, 1);
 return e.selector.rows = b, e.selector.opts = c, e;
 }), Ua("rows().nodes()", function() {
@@ -31214,7 +31239,7 @@ return f;
 }, 1), d = this.rows(-1);
 return d.pop(), a.merge(d, c), d;
 }), Ua("row()", function(a, b) {
-return Cb(this.rows(a, b));
+return Db(this.rows(a, b));
 }), Ua("row().data()", function(a) {
 var b = this.context;
 return a === d ? b.length && this.length ? b[0].aoData[this[0]]._aData :d :(b[0].aoData[this[0]]._aData = a, G(b[0], this[0], "data"), this);
@@ -31228,7 +31253,7 @@ return b.nodeName && "TR" === b.nodeName.toUpperCase() ? v(a, b)[0] :u(a, b);
 });
 return this.row(c[0]);
 });
-var Fb = function(b, c, d, e) {
+var Gb = function(b, c, d, e) {
 var f = [], g = function(c, d) {
 if (a.isArray(c) || c instanceof a) for (var e = 0, h = c.length; e < h; e++) g(c[e], d); else if (c.nodeName && "tr" === c.nodeName.toLowerCase()) f.push(c); else {
 var i = a("<tr><td/></tr>").addClass(d);
@@ -31236,19 +31261,19 @@ a("td", i).addClass(d).html(c)[0].colSpan = q(b), f.push(i[0]);
 }
 };
 g(d, e), c._details && c._details.detach(), c._details = a(f), c._detailsShow && c._details.insertAfter(c.nTr);
-}, Gb = function(a, b) {
+}, Hb = function(a, b) {
 var c = a.context;
 if (c.length) {
 var e = c[0].aoData[b !== d ? b :a[0]];
 e && e._details && (e._details.remove(), e._detailsShow = d, e._details = d);
 }
-}, Hb = function(a, b) {
+}, Ib = function(a, b) {
 var c = a.context;
 if (c.length && a.length) {
 var d = c[0].aoData[a[0]];
-d._details && (d._detailsShow = b, b ? d._details.insertAfter(d.nTr) :d._details.detach(), Ib(c[0]));
+d._details && (d._detailsShow = b, b ? d._details.insertAfter(d.nTr) :d._details.detach(), Jb(c[0]));
 }
-}, Ib = function(a) {
+}, Jb = function(a) {
 var b = new Ta(a), c = ".dt.DT_details", d = "draw" + c, e = "column-visibility" + c, f = "destroy" + c, g = a.aoData;
 b.off(d + " " + e + " " + f), hb(g, "_details").length > 0 && (b.on(d, function(c, d) {
 a === d && b.rows({
@@ -31260,37 +31285,37 @@ b._detailsShow && b._details.insertAfter(b.nTr);
 }), b.on(e, function(b, c, d, e) {
 if (a === c) for (var f, h = q(c), i = 0, j = g.length; i < j; i++) f = g[i], f._details && f._details.children("td[colspan]").attr("colspan", h);
 }), b.on(f, function(c, d) {
-if (a === d) for (var e = 0, f = g.length; e < f; e++) g[e]._details && Gb(b, e);
+if (a === d) for (var e = 0, f = g.length; e < f; e++) g[e]._details && Hb(b, e);
 }));
-}, Jb = "", Kb = Jb + "row().child", Lb = Kb + "()";
-Ua(Lb, function(a, b) {
+}, Kb = "", Lb = Kb + "row().child", Mb = Lb + "()";
+Ua(Mb, function(a, b) {
 var c = this.context;
-return a === d ? c.length && this.length ? c[0].aoData[this[0]]._details :d :(a === !0 ? this.child.show() :a === !1 ? Gb(this) :c.length && this.length && Fb(c[0], c[0].aoData[this[0]], a, b), this);
-}), Ua([ Kb + ".show()", Lb + ".show()" ], function(a) {
-return Hb(this, !0), this;
-}), Ua([ Kb + ".hide()", Lb + ".hide()" ], function() {
-return Hb(this, !1), this;
-}), Ua([ Kb + ".remove()", Lb + ".remove()" ], function() {
-return Gb(this), this;
-}), Ua(Kb + ".isShown()", function() {
+return a === d ? c.length && this.length ? c[0].aoData[this[0]]._details :d :(a === !0 ? this.child.show() :a === !1 ? Hb(this) :c.length && this.length && Gb(c[0], c[0].aoData[this[0]], a, b), this);
+}), Ua([ Lb + ".show()", Mb + ".show()" ], function(a) {
+return Ib(this, !0), this;
+}), Ua([ Lb + ".hide()", Mb + ".hide()" ], function() {
+return Ib(this, !1), this;
+}), Ua([ Lb + ".remove()", Mb + ".remove()" ], function() {
+return Hb(this), this;
+}), Ua(Lb + ".isShown()", function() {
 var a = this.context;
 return !(!a.length || !this.length) && (a[0].aoData[this[0]]._detailsShow || !1);
 });
-var Mb = /^([^:]+):(name|visIdx|visible)$/, Nb = function(a, b, c, d, e) {
+var Nb = /^([^:]+):(name|visIdx|visible)$/, Ob = function(a, b, c, d, e) {
 for (var f = [], g = 0, h = e.length; g < h; g++) f.push(y(a, e[g], b));
 return f;
-}, Ob = function(b, c, d) {
+}, Pb = function(b, c, d) {
 var e = b.aoColumns, f = hb(e, "sName"), g = hb(e, "nTh"), h = function(c) {
 var h = cb(c);
 if ("" === c) return jb(e.length);
 if (null !== h) return [ h >= 0 ? h :e.length + h ];
 if ("function" == typeof c) {
-var i = Db(b, d);
+var i = Eb(b, d);
 return a.map(e, function(a, d) {
-return c(d, Nb(b, d, 0, 0, i), g[d]) ? d :null;
+return c(d, Ob(b, d, 0, 0, i), g[d]) ? d :null;
 });
 }
-var j = "string" == typeof c ? c.match(Mb) :"";
+var j = "string" == typeof c ? c.match(Nb) :"";
 if (j) switch (j[2]) {
 case "visIdx":
 case "visible":
@@ -31319,8 +31344,8 @@ if (m.length || !c.nodeName) return m;
 var n = a(c).closest("*[data-dt-column]");
 return n.length ? [ n.data("dt-column") ] :[];
 };
-return Ab("column", c, h, b, d);
-}, Pb = function(b, c, e) {
+return Bb("column", c, h, b, d);
+}, Qb = function(b, c, e) {
 var f, g, h, i, j = b.aoColumns, k = j[c], l = b.aoData;
 if (e === d) return k.bVisible;
 if (k.bVisible !== e) {
@@ -31332,9 +31357,9 @@ k.bVisible = e, L(b, b.aoHeader), L(b, b.aoFooter), Da(b);
 }
 };
 Ua("columns()", function(b, c) {
-b === d ? b = "" :a.isPlainObject(b) && (c = b, b = ""), c = Bb(c);
+b === d ? b = "" :a.isPlainObject(b) && (c = b, b = ""), c = Cb(c);
 var e = this.iterator("table", function(a) {
-return Ob(a, b, c);
+return Pb(a, b, c);
 }, 1);
 return e.selector.cols = b, e.selector.opts = c, e;
 }), Va("columns().header()", "column().header()", function(a, b) {
@@ -31346,7 +31371,7 @@ return this.iterator("column", function(a, b) {
 return a.aoColumns[b].nTf;
 }, 1);
 }), Va("columns().data()", "column().data()", function() {
-return this.iterator("column-rows", Nb, 1);
+return this.iterator("column-rows", Ob, 1);
 }), Va("columns().dataSrc()", "column().dataSrc()", function() {
 return this.iterator("column", function(a, b) {
 return a.aoColumns[b].mData;
@@ -31361,7 +31386,7 @@ return ib(a.aoData, e, "anCells", b);
 }, 1);
 }), Va("columns().visible()", "column().visible()", function(a, b) {
 var c = this.iterator("column", function(b, c) {
-return a === d ? b.aoColumns[c].bVisible :void Pb(b, c, a);
+return a === d ? b.aoColumns[c].bVisible :void Qb(b, c, a);
 });
 return a !== d && (this.iterator("column", function(c, d) {
 La(c, null, "column-visibility", [ c, d, a, b ]);
@@ -31381,10 +31406,10 @@ if ("fromVisible" === a || "toData" === a) return o(c, b);
 if ("fromData" === a || "toVisible" === a) return p(c, b);
 }
 }), Ua("column()", function(a, b) {
-return Cb(this.columns(a, b));
+return Db(this.columns(a, b));
 });
-var Qb = function(b, c, e) {
-var f, g, h, i, j, k, l, m = b.aoData, n = Db(b, e), o = kb(ib(m, n, "anCells")), p = a([].concat.apply([], o)), q = b.aoColumns.length, r = function(c) {
+var Rb = function(b, c, e) {
+var f, g, h, i, j, k, l, m = b.aoData, n = Eb(b, e), o = kb(ib(m, n, "anCells")), p = a([].concat.apply([], o)), q = b.aoColumns.length, r = function(c) {
 var e = "function" == typeof c;
 if (null === c || c === d || e) {
 for (g = [], h = 0, i = n.length; h < i; h++) for (f = n[h], j = 0; j < q; j++) k = {
@@ -31405,11 +31430,11 @@ row:l.data("dt-row"),
 column:l.data("dt-column")
 } ] :[]);
 };
-return Ab("cell", c, r, b, e);
+return Bb("cell", c, r, b, e);
 };
 Ua("cells()", function(b, c, e) {
 if (a.isPlainObject(b) && (b.row === d ? (e = b, b = null) :(e = c, c = null)), a.isPlainObject(c) && (e = c, c = null), null === c || c === d) return this.iterator("table", function(a) {
-return Qb(a, b, Bb(e));
+return Rb(a, b, Cb(e));
 });
 var f, g, h, i, j, k = this.columns(c, e), l = this.rows(b, e), m = this.iterator("table", function(a, b) {
 for (f = [], g = 0, h = l[b].length; g < h; g++) for (i = 0, j = k[b].length; i < j; i++) f.push({
@@ -31453,7 +31478,7 @@ return this.iterator("cell", function(b, c, d) {
 G(b, c, a, d);
 });
 }), Ua("cell()", function(a, b, c) {
-return Cb(this.cells(a, b, c));
+return Db(this.cells(a, b, c));
 }), Ua("cell().data()", function(a) {
 var b = this.context, c = this[0];
 return a === d ? b.length && c.length ? y(b[0], c[0].row, c[0].column) :d :(z(b[0], c[0].row, c[0].column, a), G(b[0], c[0].row, "data", c[0].column), this);
@@ -31583,7 +31608,7 @@ a.call(e[b](g, "cell" === b ? h :c, "cell" === b ? c :d), g, h, i, j);
 }), Ua("i18n()", function(b, c, e) {
 var f = this.context[0], g = B(b)(f.oLanguage);
 return g === d && (g = c), e !== d && a.isPlainObject(g) && (g = g[e] !== d ? g[e] :g._), g.replace("%d", e);
-}), Wa.version = "1.10.13", Wa.settings = [], Wa.models = {}, Wa.models.oSearch = {
+}), Wa.version = "1.10.15", Wa.settings = [], Wa.models = {}, Wa.models.oSearch = {
 bCaseInsensitive:!0,
 sSearch:"",
 bRegex:!1,
@@ -31972,8 +31997,8 @@ sJUIHeader:e + " ui-corner-tl ui-corner-tr",
 sJUIFooter:e + " ui-corner-bl ui-corner-br"
 });
 }();
-var Rb = Wa.ext.pager;
-a.extend(Rb, {
+var Sb = Wa.ext.pager;
+a.extend(Sb, {
 simple:function(a, b) {
 return [ "previous", "next" ];
 },
@@ -32073,7 +32098,7 @@ string:function(a) {
 return bb(a) ? a :"string" == typeof a ? a.replace(Ya, " ") :a;
 }
 });
-var Sb = function(a, b, c, d) {
+var Tb = function(a, b, c, d) {
 return 0 === a || a && "-" !== a ? (b && (a = db(a, b)), a.replace && (c && (a = a.replace(c, "")), d && (a = a.replace(d, ""))), 1 * a) :-(1 / 0);
 };
 a.extend(Sa.type.order, {
@@ -32112,7 +32137,7 @@ c.removeClass(e.sSortAsc + " " + e.sSortDesc).addClass("asc" == h[i] ? e.sSortAs
 }
 }
 });
-var Tb = function(a) {
+var Ub = function(a) {
 return "string" == typeof a ? a.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") :a;
 };
 return Wa.render = {
@@ -32121,7 +32146,7 @@ return {
 display:function(f) {
 if ("number" != typeof f && "string" != typeof f) return f;
 var g = f < 0 ? "-" :"", h = parseFloat(f);
-if (isNaN(h)) return Tb(f);
+if (isNaN(h)) return Ub(f);
 h = h.toFixed(c), f = Math.abs(h);
 var i = parseInt(f, 10), j = c ? b + (f - i).toFixed(c).substring(2) :"";
 return g + (d || "") + i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, a) + j + (e || "");
@@ -32130,7 +32155,7 @@ return g + (d || "") + i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, a) + j + (e
 },
 text:function() {
 return {
-display:Tb
+display:Ub
 };
 }
 }, a.extend(Wa.ext.internal, {
@@ -32181,7 +32206,7 @@ _fnFilterCustom:Y,
 _fnFilterColumn:Z,
 _fnFilter:$,
 _fnFilterCreateSearch:_,
-_fnEscapeRegex:qb,
+_fnEscapeRegex:rb,
 _fnFilterData:aa,
 _fnFeatureHtmlInfo:da,
 _fnUpdateInfo:ea,
@@ -32198,7 +32223,7 @@ _fnFeatureHtmlTable:oa,
 _fnScrollDraw:pa,
 _fnApplyToChildren:qa,
 _fnCalculateColumnWidths:ra,
-_fnThrottle:ub,
+_fnThrottle:vb,
 _fnConvertToWidth:sa,
 _fnGetWidestNode:ta,
 _fnGetMaxLenString:ua,
@@ -32406,33 +32431,35 @@ _fnMouseListener:function(b, c) {
 var d = this;
 a(c).on("mousedown.ColReorder", function(a) {
 a.preventDefault(), d._fnMouseDown.call(d, a, c);
+}).on("touchstart.ColReorder", function(a) {
+d._fnMouseDown.call(d, a, c);
 });
 },
 _fnMouseDown:function(b, e) {
 var f = this, g = a(b.target).closest("th, td"), h = g.offset(), i = parseInt(a(e).attr("data-column-index"), 10);
-i !== d && (this.s.mouse.startX = b.pageX, this.s.mouse.startY = b.pageY, this.s.mouse.offsetX = b.pageX - h.left, this.s.mouse.offsetY = b.pageY - h.top, this.s.mouse.target = this.s.dt.aoColumns[i].nTh, this.s.mouse.targetIndex = i, this.s.mouse.fromIndex = i, this._fnRegions(), a(c).on("mousemove.ColReorder", function(a) {
+i !== d && (this.s.mouse.startX = this._fnCursorPosition(b, "pageX"), this.s.mouse.startY = this._fnCursorPosition(b, "pageY"), this.s.mouse.offsetX = this._fnCursorPosition(b, "pageX") - h.left, this.s.mouse.offsetY = this._fnCursorPosition(b, "pageY") - h.top, this.s.mouse.target = this.s.dt.aoColumns[i].nTh, this.s.mouse.targetIndex = i, this.s.mouse.fromIndex = i, this._fnRegions(), a(c).on("mousemove.ColReorder touchmove.ColReorder", function(a) {
 f._fnMouseMove.call(f, a);
-}).on("mouseup.ColReorder", function(a) {
+}).on("mouseup.ColReorder touchend.ColReorder", function(a) {
 f._fnMouseUp.call(f, a);
 }));
 },
 _fnMouseMove:function(a) {
 if (null === this.dom.drag) {
-if (Math.pow(Math.pow(a.pageX - this.s.mouse.startX, 2) + Math.pow(a.pageY - this.s.mouse.startY, 2), .5) < 5) return;
+if (Math.pow(Math.pow(this._fnCursorPosition(a, "pageX") - this.s.mouse.startX, 2) + Math.pow(this._fnCursorPosition(a, "pageY") - this.s.mouse.startY, 2), .5) < 5) return;
 this._fnCreateDragNode();
 }
 this.dom.drag.css({
-left:a.pageX - this.s.mouse.offsetX,
-top:a.pageY - this.s.mouse.offsetY
+left:this._fnCursorPosition(a, "pageX") - this.s.mouse.offsetX,
+top:this._fnCursorPosition(a, "pageY") - this.s.mouse.offsetY
 });
-for (var b = !1, c = this.s.mouse.toIndex, d = 1, e = this.s.aoTargets.length; d < e; d++) if (a.pageX < this.s.aoTargets[d - 1].x + (this.s.aoTargets[d].x - this.s.aoTargets[d - 1].x) / 2) {
+for (var b = !1, c = this.s.mouse.toIndex, d = 1, e = this.s.aoTargets.length; d < e; d++) if (this._fnCursorPosition(a, "pageX") < this.s.aoTargets[d - 1].x + (this.s.aoTargets[d].x - this.s.aoTargets[d - 1].x) / 2) {
 this.dom.pointer.css("left", this.s.aoTargets[d - 1].x), this.s.mouse.toIndex = this.s.aoTargets[d - 1].to, b = !0;
 break;
 }
 b || (this.dom.pointer.css("left", this.s.aoTargets[this.s.aoTargets.length - 1].x), this.s.mouse.toIndex = this.s.aoTargets[this.s.aoTargets.length - 1].to), this.s.init.bRealtime && c !== this.s.mouse.toIndex && (this.s.dt.oInstance.fnColReorder(this.s.mouse.fromIndex, this.s.mouse.toIndex, !1), this.s.mouse.fromIndex = this.s.mouse.toIndex, this._fnRegions());
 },
 _fnMouseUp:function(b) {
-a(c).off("mousemove.ColReorder mouseup.ColReorder"), null !== this.dom.drag && (this.dom.drag.remove(), this.dom.pointer.remove(), this.dom.drag = null, this.dom.pointer = null, this.s.dt.oInstance.fnColReorder(this.s.mouse.fromIndex, this.s.mouse.toIndex, !0), this._fnSetColumnIndexes(), "" === this.s.dt.oScroll.sX && "" === this.s.dt.oScroll.sY || this.s.dt.oInstance.fnAdjustColumnSizing(!1), this.s.dt.oInstance.oApi._fnSaveState(this.s.dt), null !== this.s.reorderCallback && this.s.reorderCallback.call(this));
+a(c).off(".ColReorder"), null !== this.dom.drag && (this.dom.drag.remove(), this.dom.pointer.remove(), this.dom.drag = null, this.dom.pointer = null, this.s.dt.oInstance.fnColReorder(this.s.mouse.fromIndex, this.s.mouse.toIndex, !0), this._fnSetColumnIndexes(), "" === this.s.dt.oScroll.sX && "" === this.s.dt.oScroll.sY || this.s.dt.oInstance.fnAdjustColumnSizing(!1), this.s.dt.oInstance.oApi._fnSaveState(this.s.dt), null !== this.s.reorderCallback && this.s.reorderCallback.call(this));
 },
 _fnRegions:function() {
 var b = this.s.dt.aoColumns;
@@ -32464,6 +32491,9 @@ _fnSetColumnIndexes:function() {
 a.each(this.s.dt.aoColumns, function(b, c) {
 a(c.nTh).attr("data-column-index", b);
 });
+},
+_fnCursorPosition:function(a, b) {
+return a.type.indexOf("touch") !== -1 ? a.originalEvent.touches[0][b] :a[b];
 }
 }), i.defaults = {
 aiOrder:null,
@@ -32471,7 +32501,7 @@ bRealtime:!0,
 iFixedColumnsLeft:0,
 iFixedColumnsRight:0,
 fnReorderCallback:null
-}, i.version = "1.3.2", a.fn.dataTable.ColReorder = i, a.fn.DataTable.ColReorder = i, "function" == typeof a.fn.dataTable && "function" == typeof a.fn.dataTableExt.fnVersionCheck && a.fn.dataTableExt.fnVersionCheck("1.10.8") ? a.fn.dataTableExt.aoFeatures.push({
+}, i.version = "1.3.3", a.fn.dataTable.ColReorder = i, a.fn.DataTable.ColReorder = i, "function" == typeof a.fn.dataTable && "function" == typeof a.fn.dataTableExt.fnVersionCheck && a.fn.dataTableExt.fnVersionCheck("1.10.8") ? a.fn.dataTableExt.aoFeatures.push({
 fnInit:function(a) {
 var b = a.oInstance;
 if (a._colReorder) b.oApi._fnLog(a, 1, "ColReorder attempted to initialise twice. Ignoring second"); else {

@@ -270,6 +270,27 @@ window.OPENSHIFT_CONSTANTS = {
   ],
   CATALOG_CATEGORIES: [
     {
+      // Required.  Must be unique
+      id: "featured",
+      // Required
+      label: "Featured",
+      // Optional.  If specified, each item in the category will utilize this icon
+      // as a default
+      iconClassDefault: "fa fa-code",
+      items: [
+        {
+          // Required.  Must be unique
+          id: "microsoft",
+          // Required
+          label: "Microsoft",
+          // Optional.  If specified, defines a unique icon for this item
+          iconClass: "font-icon icon-dotnet",
+          // Optional.  If specified, will display below the item label
+          description: "Microsoft Technologies"
+        }
+      ]
+    },
+    {
       id: 'languages',
       label: "Languages",
       iconClassDefault: "fa fa-code",

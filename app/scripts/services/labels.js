@@ -28,7 +28,11 @@ angular.module("openshiftConsole")
 
         // Build a map of selectors by owner UID.
         _.each(owners, function(owner) {
-          selectors[owner.metadata.uid] = new LabelSelector(owner.spec.selector);
+          if (("annotations" in owner.metadata) && ("openshift.io/alternate-name-selector" in owner.metadata.annotations)) {
+            selectors[owner.metadata.uid] = new LabelSelector({"name": owner.metadata.annotations["openshift.io/alternate-name-selector"]});
+          } else {
+            selectors[owner.metadata.uid] = new LabelSelector(owner.spec.selector);
+          }
         });
 
         // Find matching owners for each object.
