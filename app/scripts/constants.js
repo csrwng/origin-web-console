@@ -343,6 +343,10 @@ angular.extend(window.OPENSHIFT_CONSTANTS, {
               href: "/quota"
             },
             {
+              label: "Cluster Operator",
+              href: "/clusterop",
+            },
+            {
               label: "Membership",
               href: "/membership",
               // supports: {resource: '', verb: '', group: '' }

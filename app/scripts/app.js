@@ -95,6 +95,11 @@ angular
         controller: 'MembershipController',
         reloadOnSearch: false
       })
+      .when('/project/:project/clusterop', {
+        templateUrl: 'views/clusterop.html',
+        controller: 'ClusterOpController',
+        reloadOnSearch: false
+      })
       .when('/project/:project/browse', {
         redirectTo: function(params) {
           return '/project/' + encodeURIComponent(params.project) + "/browse/pods";  // TODO decide what subtab to default to here
