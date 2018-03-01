@@ -1,0 +1,13 @@
+<div ng-attr-id="{{chartId}}" class="pod-donut" ng-class="{ mini: mini }"></div>
+
+<div ng-if="mini" class="donut-mini-text">
+  <span ng-if="!idled && total <= 99">
+    {{total}}
+  </span>
+</div>
+<span ng-if="mini && total === 1 && !idled" class="donut-mini-text-name">machine</span>
+<span ng-if="mini && total !== 1 && !idled" class="donut-mini-text-name">
+  <span ng-if="!idled && total > 99">
+    {{total}}
+  </span> machine
+</span>
